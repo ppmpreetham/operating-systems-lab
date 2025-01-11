@@ -1,18 +1,21 @@
 #include <stdio.h>
 
-void fcfs(int n, int arrival[], int burst[], int complete[], int tat[], int w[]){
-    complete[0] = arrival[0] + burst[0];
+int max(int a, int b){ return a>b?a:b;}
+
+void fcfs(int n, int arrival[], int burst[], int completed[], int tat[], int waiting[]){
+    completed[0] = arrival[0] + burst[0];
     
-    for (size_t i = 1; i < n; i++){
-        complete[i] = complete[i-1] + burst[i];
+    for (int i = 1; i < n; i++){
+        completed[i] = max(completed[i-1],arrival[i]) + burst[i];
     }
 
-    for (size_t i = 0; i < n; i++){
-        tat[i] = complete[i] - arrival[i];
-        w[i] = tat[i] - burst[i];
+    for (int i = 0; i < n; i++){
+        tat[i] = completed[i] - arrival[i];
+        waiting[i] = tat[i] - burst[i];
     }
 }
 
+// Driver Code
 void main(){
     int n;
     printf("Enter the number of inputs\n");
@@ -33,3 +36,4 @@ void main(){
         printf("%d\t%d\t%d\t%d\t%d\n", arrival[i], burst[i], complete[i],tat[i],w[i]);
     }
 }
+
