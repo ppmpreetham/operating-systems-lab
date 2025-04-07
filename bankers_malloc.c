@@ -13,13 +13,10 @@ void bankers(int p, int r, int *avail, int **allocation, int **max, int **need) 
         for (int i = 0; i < p; i++) {
             if (!finish[i]) {
                 int flag = 1;
-                for (int j = 0; j < r; j++) 
-                    if (avail[j] < need[i][j]) 
-                        flag = 0;
+                for (int j = 0; j < r; j++) if (avail[j] < need[i][j]) flag = 0;
 
                 if (flag) {
-                    for (int j = 0; j < r; j++) 
-                        avail[j] += allocation[i][j];
+                    for (int j = 0; j < r; j++) avail[j] += allocation[i][j];
                     seq[idx++] = i;
                     finish[i] = 1;
                 }
