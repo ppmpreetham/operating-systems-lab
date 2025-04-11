@@ -3,14 +3,14 @@
 
 void bankers(int p, int r, int *avail, int **allocation, int **max, int **need) {
     int idx = 0;
-    int *finish = (int *)malloc(p * sizeof(int));
-    int *seq = (int *)malloc(p * sizeof(int));
+    int* finish = (int *)malloc(p * sizeof(int));
+    int* seq = (int *)malloc(p * sizeof(int)); // 3-4-2-1-5 or smtg
 
     for (int i = 0; i < p; i++) 
         finish[i] = 0;
 
     for (int process = 0; process < p; process++) {
-        for (int i = 0; i < p; i++) {
+        for (int i = 0; i < p; i++) { // for each process
             if (!finish[i]) {
                 int flag = 1;
                 for (int j = 0; j < r; j++) if (avail[j] < need[i][j]) flag = 0;
